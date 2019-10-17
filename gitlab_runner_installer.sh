@@ -15,6 +15,6 @@ sudo chown -R 1000:1000 $CONFIG_DIR
 
 # Run docker container
 sudo docker run -d --name gitlab-runner \
-				-v $CONFIG_DIR:/etc/gitlab-runner
+				-v $CONFIG_DIR:/etc/gitlab-runner \
 				-v /var/run/docker.sock:/var/run/docker.sock \
 				gitlab/gitlab-runner:latest
