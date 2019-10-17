@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # This script install docker on Ubuntu 18.04
-sudo apt-get update
 sudo apt-get install -y  \
     apt-transport-https \
     ca-certificates \

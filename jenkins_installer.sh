@@ -1,20 +1,22 @@
 #!/bin/bash
 
-# This script downloads Jenkins
+# This script runs Jenkins in a docker container 
 
-# Check if docker is install
+# Check if docker is installed
 docker --version &> /dev/null
 
 if [[ $? -ne 0 ]]; then
 	source ~/shell-scripts/docker_installer.sh
 fi
 
-sudo mkdir -p /var/jenkins_home
-sudo chown -R 1000:1000 /var/jenkins_home/
+CONFIG_DIR="/var/jenkins_home"
+sudo mkdir -p $CONFIG_DIR
+sudo chown -R 1000:1000 $CONFIG_DIR
 
+# Run docker container
 sudo docker run -p 8080:8080 -p 50000:50000 \
 		   -d \
-		   -v /var/jenkins_home:/var/jenkins_home -d \
+		   -v $CONFIG_DIR:$CONFIG_DIR -d \
 		   -v /var/run/docker.sock:/var/run/docker.sock \
 		   --name jenkins \
 		   jenkins
