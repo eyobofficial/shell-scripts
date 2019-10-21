@@ -26,7 +26,7 @@ sudo add-apt-repository \
    $(lsb_release -cs) \
    stable"
 
-sudo apt-get update -y > /dev/null
+sudo apt-get update -y 
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 
 # Add `docker` to sudo group to avoid using `sudo` with docker commands
