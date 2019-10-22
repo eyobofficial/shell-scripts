@@ -11,12 +11,13 @@ fi
 
 CONFIG_DIR="/var/jenkins_home"
 sudo mkdir -p $CONFIG_DIR
-sudo chown -R 1000:1000 $CONFIG_DIR
+sudo chown -R 1000 $CONFIG_DIR
 
 # Run docker container
-sudo docker run -p 8080:8080 -p 50000:50000 \
-		   -d \
-		   -v $CONFIG_DIR:$CONFIG_DIR -d \
+sudo docker run -d --rm --name jenkinsci \
+		   -u root
+		   -p 8080:8080 -p 50000:50000 \
+		   -v $CONFIG_DIR:$CONFIG_DIR \
 		   -v /var/run/docker.sock:/var/run/docker.sock \
-		   --name jenkins \
-		   jenkins
+		   -v "$HOME":/home \
+		   jenkinsci/blueocean
