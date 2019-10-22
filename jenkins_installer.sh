@@ -15,7 +15,7 @@ sudo chown -R 1000 $CONFIG_DIR
 
 # Run docker container
 sudo docker run -d --rm --name jenkinsci \
-		   -u root
+		   -u root \
 		   -p 8080:8080 -p 50000:50000 \
 		   -v $CONFIG_DIR:$CONFIG_DIR \
 		   -v /var/run/docker.sock:/var/run/docker.sock \
